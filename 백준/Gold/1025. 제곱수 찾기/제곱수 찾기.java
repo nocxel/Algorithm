@@ -39,12 +39,17 @@ public class Main {
     }
 
     // 시작점 n,m이 주어졌을 때 등차수열들 만들기
+    
     // 5*5 배열일때 (0,0) ~ (4,4) 확인하니 첫 지점 0,0 일때 4,4이상으로 갈필요가없음
     // -4,-3,-2,-1,0,1,2,3,4 만 확인하면 됨 int i = -N+1; i < N; i++
     // N-1까지만 확인하면 됨
 
     // 기준좌표 row, column으로 받음
     public static void arithmeticSequenceFromPoint(int r, int c) {
+        // dX, dY 범위를 -M+1 ~ M-1, -N+1 ~ N-1 로 하면 될 줄 알았는데
+        // 이렇게 하면 while문이 한번도 안돌아가서 기준점 자체가 제곱 수 일 경우를 체크하지 못하는
+        // 상황을 확인할 수 있었다. ex) input: "1 1 \n 9" output: -1 answer: 9 
+        // while문이 적어도 한번은 돌 수 있도록 범위를 -M ~ M-1, -N ~ N-1 까지로 설정하였다.
         for (int dX = -M; dX < M ; dX++) {
             for (int dY = -N; dY < N ; dY++) {
                 if (dX == 0 && dY == 0) continue;
